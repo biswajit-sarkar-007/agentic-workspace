@@ -246,8 +246,20 @@ export function DocsMock() {
   );
 }
 
+interface BoardCard {
+  id: string;
+  title: string;
+  tag: string;
+  active?: boolean;
+}
+
+interface BoardColumn {
+  title: string;
+  cards: BoardCard[];
+}
+
 export function BoardMock() {
-  const columns = [
+  const columns: BoardColumn[] = [
     {
       title: "RFC Proposal",
       cards: [

@@ -13,11 +13,23 @@ export async function canAccessWorkspace(workspaceId: string) {
   });
   if (!workspace) return false;
 
-  if (!workspace.clerkOrgId) return workspace.creator.clerkId === userId;
-  if (workspace.clerkOrgId === orgId) return true;
+  // The creator can always access their own workspace
+  if (workspace.creator?.clerkId === userId) return true;
 
-  // The session only knows the active org, so check full membership for links into another org.
-  const clerk = await clerkClient();
-  const { data: memberships } = await clerk.users.getOrganizationMembershipList({ userId, limit: 100 });
-  return memberships.some((m) => m.organization.id === workspace.clerkOrgId);
+  // Active organization match
+  if (workspace.clerkOrgId && workspace.clerkOrgId === orgId) return true;
+
+  // Check full membership list if belongs to another organization
+  if (workspace.clerkOrgId) {
+    try {
+      const clerk = await clerkClient();
+      const { data: memberships } = await clerk.users.getOrganizationMembershipList({ userId, limit: 100 });
+      return memberships.some((m) => m.organization.id === workspace.clerkOrgId);
+    } catch (error) {
+      console.error("Error verifying organization membership:", error);
+      return false;
+    }
+  }
+
+  return false;
 }

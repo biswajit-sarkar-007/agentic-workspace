@@ -12,8 +12,8 @@ const PROMPT_FEATURES = [
 // personal ones. Clerk prefixes its ids, so they can't collide.
 export const workspaceOwnerSelect = { clerkOrgId: true, creator: { select: { clerkId: true } } } as const;
 
-export function workspaceOwnerId(workspace: { clerkOrgId: string | null; creator: { clerkId: string } }) {
-  return workspace.clerkOrgId ?? workspace.creator.clerkId;
+export function workspaceOwnerId(workspace: { clerkOrgId: string | null; creator?: { clerkId: string } | null }) {
+  return workspace.clerkOrgId ?? workspace.creator?.clerkId ?? "";
 }
 
 export async function getWorkspaceOwnerId(workspaceId: string) {

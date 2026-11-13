@@ -18,6 +18,22 @@ export async function checkUser() {
   const email = clerkUser.emailAddresses[0]?.emailAddress;
   if (!email) return null;
 
+  // If a user with this email already exists (e.g. from seed or re-signup), sync their clerkId
+  const existingByEmail = await prisma.user.findUnique({
+    where: { email },
+  });
+
+  if (existingByEmail) {
+    return prisma.user.update({
+      where: { id: existingByEmail.id },
+      data: {
+        clerkId: clerkUser.id,
+        name: `${clerkUser.firstName ?? ""} ${clerkUser.lastName ?? ""}`.trim() || existingByEmail.name,
+        imageUrl: clerkUser.imageUrl ?? existingByEmail.imageUrl,
+      },
+    });
+  }
+
   return prisma.user.create({
     data: {
       clerkId: clerkUser.id,

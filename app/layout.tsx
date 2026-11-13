@@ -46,8 +46,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         variables: {
           colorPrimary: "#5e6ad2",
           colorBackground: "#08090a",
-          colorInputBackground: "#010102",
-          colorInputText: "#f7f8f8",
+          colorInput: "#010102",
+          colorInputForeground: "#f7f8f8",
           borderRadius: "8px",
         },
       }}
