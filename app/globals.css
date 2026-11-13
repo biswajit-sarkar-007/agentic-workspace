@@ -1,0 +1,183 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-geist-sans);
+
+  /* Linear Surface Ladder Tokens */
+  --color-canvas: var(--canvas);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-surface-4: var(--surface-4);
+
+  /* Linear Hairline Border Tokens */
+  --color-hairline: var(--hairline);
+  --color-hairline-strong: var(--hairline-strong);
+  --color-hairline-tertiary: var(--hairline-tertiary);
+
+  /* Linear Ink / Typography Tokens */
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-subtle: var(--ink-subtle);
+  --color-ink-tertiary: var(--ink-tertiary);
+
+  /* Brand Accents */
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-focus: var(--primary-focus);
+  --color-brand-secure: var(--brand-secure);
+
+  /* Semantic */
+  --color-semantic-success: var(--semantic-success);
+
+  /* Standard UI component tokens */
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Radius Scale according to DESIGN.MD */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-xxl: 24px;
+  --radius-pill: 9999px;
+}
+
+/* Linear-inspired Design System: Pure dark-canvas marketing and app environment */
+:root,
+.dark {
+  /* Canvas: Deepest dark surface (#010102) with faint blue undertone */
+  --canvas: #010102;
+  --background: #010102;
+  --foreground: #f7f8f8;
+
+  /* Surface Ladder */
+  --surface-1: #08090a;
+  --surface-2: #121316;
+  --surface-3: #1b1c20;
+  --surface-4: #26282e;
+
+  --card: #08090a;
+  --card-foreground: #f7f8f8;
+  --popover: #121316;
+  --popover-foreground: #f7f8f8;
+
+  /* Linear Signature Lavender-Blue (#5e6ad2) */
+  --primary: #5e6ad2;
+  --primary-hover: #828fff;
+  --primary-focus: #5e69d1;
+  --primary-foreground: #ffffff;
+  --brand-secure: #7a7fad;
+
+  --secondary: #121316;
+  --secondary-foreground: #f7f8f8;
+
+  --muted: #0c0d0e;
+  --muted-foreground: #8a8f98;
+
+  --accent: #151618;
+  --accent-foreground: #f7f8f8;
+
+  --destructive: #eb5757;
+
+  /* Hairlines: 1px precision dividers */
+  --hairline: #23252a;
+  --hairline-strong: #31353d;
+  --hairline-tertiary: #191a1e;
+
+  --border: #23252a;
+  --input: #23252a;
+  --ring: #5e69d1;
+
+  /* Inks: Crisp neutral typography */
+  --ink: #f7f8f8;
+  --ink-muted: #d0d6e0;
+  --ink-subtle: #8a8f98;
+  --ink-tertiary: #62666d;
+
+  /* Semantic */
+  --semantic-success: #27a644;
+
+  --radius: 0.5rem;
+  /* 8px base for rounded-md */
+
+  /* Sidebar Tokens */
+  --sidebar: #08090a;
+  --sidebar-foreground: #f7f8f8;
+  --sidebar-primary: #5e6ad2;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #121316;
+  --sidebar-accent-foreground: #f7f8f8;
+  --sidebar-border: #23252a;
+  --sidebar-ring: #5e69d1;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    background-color: var(--canvas);
+    color: var(--ink);
+    position: relative;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  html {
+    @apply font-sans;
+    color-scheme: dark;
+  }
+
+  /* Aggressive negative tracking on display headings as specified in DESIGN.MD */
+  h1 {
+    letter-spacing: -0.038em;
+  }
+
+  h2 {
+    letter-spacing: -0.03em;
+  }
+
+  h3 {
+    letter-spacing: -0.02em;
+  }
+
+  /* Doc headings retain their editor layout */
+  .bn-container :is(h1, h2, h3) {
+    font-family: inherit;
+  }
+}
+
+/* Subtle top edge highlight for lifted dark surfaces */
+@utility panel-highlight {
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Animated SVG pulse beam along architecture pipelines */
+@keyframes dash {
+  to {
+    stroke-dashoffset: -50;
+  }
+}
