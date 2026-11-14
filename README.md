@@ -39,6 +39,12 @@ Equipped with an autonomous dual-surface agent powered by Google Gemini, Axiom s
 
 ---
 
+
+
+
+
+
+
 ## Key Features
 
 ### 1. Dual-Surface Autonomous Agent
