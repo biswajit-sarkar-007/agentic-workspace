@@ -43,6 +43,10 @@ Equipped with an autonomous dual-surface agent powered by Google Gemini, Axiom s
 
 
 
+https://github.com/user-attachments/assets/c587d345-daa4-4d29-a6ab-6a10e737dc23
+
+
+
 
 
 ## Key Features
